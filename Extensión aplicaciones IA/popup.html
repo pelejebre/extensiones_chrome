@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { /*dimensiones y estilo del popup*/
+            width: 600px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-image: url('images/_background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        h3 { /*estilo del titulo*/
+            margin-top: 0;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .description {
+            font-size: 14px;
+            color: #f0f0f0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .grid-container { /*estilo del contenedor de las tarjetas*/
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .ai-card { /*estilo de las tarjetas*/
+            background: white;
+            border: none;
+            border-radius: 12px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70px;
+            width: 100%;
+        }
+        .ai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .ai-card img { /*estilo de las imagenes*/
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+        }
+        .ai-card-name {
+            display: none;
+        }
+        .ai-card.full-width {
+            grid-column: span 1;
+        }
+        .ai-card.chatgpt {
+            grid-column: span 1;
+        }
+        .ai-card.gemini { background: linear-gradient(135deg, #4285f4 0%, #34a853 100%); }
+        .ai-card.google-ai { background: linear-gradient(135deg, #4285f4 0%, #ea4335 100%); }
+        .ai-card.notebooklm { background: linear-gradient(135deg, #fbbc04 0%, #34a853 100%); }
+        .ai-card.chatgpt { background: linear-gradient(135deg, #10a37f 0%, #1a7f64 100%); }
+        .ai-card.perplexity { background: linear-gradient(135deg, #20808d 0%, #1a5f6a 100%); }
+        
+        .ai-card.gemini .ai-card-name,
+        .ai-card.google-ai .ai-card-name,
+        .ai-card.notebooklm .ai-card-name,
+        .ai-card.chatgpt .ai-card-name,
+        .ai-card.perplexity .ai-card-name {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align:center;">
+        <img src="icon48.png" alt="icono" width="48" height="48" style="margin-bottom:5px;" />
+    </div>
+    <h3>Aplicaciones IA</h3>    
+    
+    <div class="grid-container">
+        <button class="ai-card google-ai" data-url="https://aistudio.google.com">
+            <img src="images/_google_studio.png" alt="Google AI Studio">
+        </button>
+        
+        <button class="ai-card gemini" data-url="https://gemini.google.com">
+            <img src="images/_gemini.png" alt="Gemini">
+        </button>        
+        <button class="ai-card notebooklm" data-url="https://notebooklm.google.com">
+            <img src="images/_notebook.png" alt="NotebookLM">
+        </button>
+        
+        <button class="ai-card chatgpt" data-url="https://chatgpt.com">
+            <img src="images/_chatgpt.png" alt="ChatGPT">
+        </button>
+        
+        <button class="ai-card perplexity full-width" data-url="https://www.perplexity.ai">
+            <img src="images/_perplexity.png" alt="Perplexity">
+        </button>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
