@@ -40,5 +40,3 @@ Si deseas mejorar una extensión, proponer nuevas funcionalidades o compartir tu
 
 ¡Todas las contribuciones son bienvenidas! ✨  
 Si deseas mejorar una extensión, proponer nuevas funcionalidades o compartir tus propias creaciones, no dudes en abrir un issue o hacer un pull request.
-
-```
