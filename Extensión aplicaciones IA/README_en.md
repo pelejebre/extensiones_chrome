@@ -39,12 +39,19 @@ Extensión aplicaciones IA/
 
 ### Manual Installation (Developer)
 
-1. **Download**: Clone or download this repository
+1. **Download**: Download only the "Extensión aplicaciones IA" folder
 
+   **Option A - Using Git (Sparse Checkout):**
    ```bash
-   git clone https://github.com/pelejebre/extensiones_chrome.git
-   cd "extensiones_chrome/Extensión aplicaciones IA"
+   git clone --depth 1 --filter=blob:none --sparse https://github.com/pelejebre/extensiones_chrome.git
+   cd extensiones_chrome
+   git sparse-checkout set "Extensión aplicaciones IA"
    ```
+
+   **Option B - Direct download:**
+   - Go to the repository on GitHub
+   - Navigate to the "Extensión aplicaciones IA" folder
+   - Download the files manually or use [DownGit](https://minhaskamal.github.io/DownGit)
 
 2. **Open Chrome**: Go to `chrome://extensions/`
 
