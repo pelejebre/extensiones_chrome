@@ -77,12 +77,19 @@ Extensión post LinkedIN/
 
 ### Instalación Manual (Desarrollador)
 
-1. **Descargar**: Clona o descarga este repositorio
+1. **Descargar**: Descarga solo la carpeta "Extensión doctorado"
 
+   **Opción A - Usando Git (Sparse Checkout):**
    ```bash
-   git clone https://github.com/pelejebre/extensiones_chrome.git
-   cd "extensiones_chrome/Extensión doctorado"
+   git clone --depth 1 --filter=blob:none --sparse https://github.com/pelejebre/extensiones_chrome.git
+   cd extensiones_chrome
+   git sparse-checkout set "Extensión doctorado"
    ```
+
+   **Opción B - Descarga directa:**
+   - Ve al repositorio en GitHub
+   - Navega a la carpeta "Extensión doctorado"
+   - Descarga los archivos manualmente o usa [DownGit](https://minhaskamal.github.io/DownGit)
 
 2. **Abrir Chrome**: Ve a `chrome://extensions/`
 
