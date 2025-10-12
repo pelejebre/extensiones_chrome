@@ -31,14 +31,8 @@ Extensión aplicaciones IA/
 ├── popup.js               # Lógica de interacción
 ├── icon48.png             # Icono de la extensión
 ├── images/                # Recursos gráficos
-│   ├── _background.jpg    # Imagen de fondo
-│   ├── _chatgpt.png       # Logo de ChatGPT
-│   ├── _gemini.png        # Logo de Gemini
-│   ├── _google_studio.png # Logo de Google AI Studio
-│   ├── _notebook.png      # Logo de NotebookLM
-│   ├── _perplexity.png    # Logo de Perplexity
-│   └── _comet.png         # Logo adicional
-└── README.md              # Este archivo
+│   ├── ...
+└── README.md              
 ```
 
 ## 🛠️ Instalación
