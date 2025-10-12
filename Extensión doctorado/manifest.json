@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Recursos Doctorado",
+  "version": "1.0",
+  "description": "Acceso organizado a recursos para investigación doctoral: BBDD, gestores documentales, análisis y más.",
+  "permissions": [
+    "tabs"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon.png"
+    }
+  },
+  "icons": {
+    "48": "icon.png"
+  }
+}
+

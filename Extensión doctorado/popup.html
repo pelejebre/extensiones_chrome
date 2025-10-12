@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 550px;
+            min-height: 550px;
+            padding: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('images/_background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(102, 126, 234, 0.5);
+            z-index: 0;
+        }
+        
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .header img {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: white;
+            text-align: center;
+            font-size: 22px;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        
+        /* Vista del menú principal */
+        #main-menu {
+            display: block;
+        }
+        
+        #main-menu.hidden {
+            display: none;
+        }
+        
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        
+        .menu-button {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .menu-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .menu-button .icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        
+        .menu-button .arrow {
+            font-size: 20px;
+            opacity: 0.7;
+        }
+        
+        /* Colores específicos para cada botón */
+        .menu-button.bbdd {
+            background: linear-gradient(135deg, #e6f16d 0%, #ed9f21 100%);
+        }
+        
+        .menu-button.gestores {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .menu-button.analisis {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .menu-button.otros {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .menu-button.usal {
+            background: linear-gradient(135deg, #ff7f50 0%, #ff6347 100%);
+        }
+        
+        .button-content {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        /* Vista de recursos BBDD */
+        #bbdd-view {
+            display: none;
+        }
+        
+        #bbdd-view.active {
+            display: block;
+        }
+        
+        /* Vista de Gestores Documentales */
+        #gestores-view {
+            display: none;
+        }
+        
+        #gestores-view.active {
+            display: block;
+        }
+        
+        .gestores-grid {
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+        }
+        
+        /* Vista de Análisis */
+        #analisis-view {
+            display: none;
+        }
+        
+        #analisis-view.active {
+            display: block;
+        }
+        
+        .analisis-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .group-visualization {
+            background: rgba(173, 216, 230, 0.3);
+            border: 2px solid rgba(135, 206, 250, 0.5);
+            border-radius: 15px;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        
+        .group-other {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            justify-items: center;
+        }
+        
+        /* Vista de Otros Recursos */
+        #otros-view {
+            display: none;
+        }
+        
+        #otros-view.active {
+            display: block;
+        }
+        
+        .otros-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Vista de USAL */
+        #usal-view {
+            display: none;
+        }
+        
+        #usal-view.active {
+            display: block;
+        }
+        
+        /* Grupo de traductores con fondo */
+        .group-traductores {
+            background: rgba(255, 200, 100, 0.25);
+            border: 2px solid rgba(255, 180, 80, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .group-title {
+            margin: 0 0 15px 0;
+            padding: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .traductores-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        /* Grupo de IA para Investigación */
+        .group-ia-investigacion {
+            background: rgba(147, 197, 253, 0.3);
+            border: 2px solid rgba(96, 165, 250, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+
+        
+        .ia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        /* Recursos individuales */
+        .recursos-individuales {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        
+        .recursos-individuales .resource-card {
+            width: 100%;
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .resource-card {
+            background: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        
+        .resource-card img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+        
+        .resource-card .name {
+            font-size: 10px;
+            color: #333;
+            margin-top: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Estilos para tooltips personalizados */
+        .resource-card {
+            position: relative;
+        }
+        
+        .resource-card::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            line-height: 1.4;
+            white-space: normal;
+            width: 200px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .resource-card:hover::after,
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="icon.png" alt="icono" />
+        <h2 id="main-title">Recursos para el Doctorado</h2>
+        <div class="subtitle" id="main-subtitle">Organiza tu investigación</div>
+    </div>
+    
+    <!-- Vista del menú principal -->
+    <div id="main-menu">
+        <div class="menu-container">
+            <button class="menu-button bbdd" data-category="bbdd">
+                <div class="button-content">
+                    <span class="icon">📚</span>
+                    <span>BBDD</span>
+                </div>
+                <span class="arrow">›</span>
+            </button>
+            
+            <button class="menu-button gestores" data-category="gestores">
+                <div class="button-content">
+                    <span class="icon">📁</span>
+                    <span>GESTORES DOCUMENTALES</span>
+                </div>
+                <span class="arrow">›</span>
+            </button>
+            
+            <button class="menu-button analisis" data-category="analisis">
+                <div class="button-content">
+                    <span class="icon">📊</span>
+                    <span>ANÁLISIS</span>
+                </div>
+                <span class="arrow">›</span>
+            </button>
+            
+            <button class="menu-button otros" data-category="otros">
+                <div class="button-content">
+                    <span class="icon">🔧</span>
+                    <span>OTROS RECURSOS</span>
+                </div>
+                <span class="arrow">›</span>
+            </button>
+            
+            <button class="menu-button usal" data-category="usal">
+                <div class="button-content">
+                    <span class="icon">🎓</span>
+                    <span>USAL</span>
+                </div>
+                <span class="arrow">›</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Vista de recursos BBDD -->
+    <div id="bbdd-view">
+        <button class="back-button" id="back-to-menu-bbdd">
+            <span>←</span> Volver
+        </button>
+        
+        <div class="resources-grid">
+            <button class="resource-card" data-url="https://www.proquest.com">
+                <img src="images/_proquest.png" alt="ProQuest">
+                <div class="name">ProQuest</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://www.ebsco.com">
+                <img src="images/_ebscohost.png" alt="EBSCOhost">
+                <div class="name">EBSCOhost</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://www.csic.es">
+                <img src="images/_csic.png" alt="CSIC">
+                <div class="name">CSIC</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://ieeexplore.ieee.org">
+                <img src="images/_iee.png" alt="IEEE Xplore">
+                <div class="name">IEEE Xplore</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://www.sciencedirect.com">
+                <img src="images/_sciencedirect.png" alt="ScienceDirect">
+                <div class="name">ScienceDirect</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://www.scopus.com">
+                <img src="images/_scopus.png" alt="Scopus">
+                <div class="name">Scopus</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://www.webofscience.com">
+                <img src="images/_webofscience.png" alt="Web of Science">
+                <div class="name">Web of Science</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://scholar.google.com">
+                <img src="images/_googlescholar.jfif" alt="Google Scholar">
+                <div class="name">Google Scholar</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://gredos.usal.es">
+                <img src="images/_gredos.jfif" alt="GREDOS">
+                <div class="name">GREDOS</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://catalogo.usal.es">
+                <img src="images/_catalogo.png" alt="Catálogo USAL">
+                <div class="name">Catálogo</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://cielo.usal.es">
+                <img src="images/_cielo.png" alt="Cielo USAL">
+                <div class="name">Cielo</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://dialnet.unirioja.es">
+                <img src="images/_dialnet.png" alt="Dialnet">
+                <div class="name">Dialnet</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://sci-hub.se">
+                <img src="images/_scihub.png" alt="Sci-Hub">
+                <div class="name">Sci-Hub</div>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Vista de Gestores Documentales -->
+    <div id="gestores-view">
+        <button class="back-button" id="back-to-menu-gestores">
+            <span>←</span> Volver
+        </button>
+        
+        <div class="resources-grid gestores-grid">
+            <button class="resource-card" data-url="https://www.zotero.org">
+                <img src="images/_zotero.jfif" alt="Zotero">
+                <div class="name">Zotero</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://refworks.proquest.com">
+                <img src="images/_refworks.png" alt="RefWorks">
+                <div class="name">RefWorks</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://www.mendeley.com">
+                <img src="images/_mendeley.png" alt="Mendeley">
+                <div class="name">Mendeley</div>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Vista de Análisis -->
+    <div id="analisis-view">
+        <button class="back-button" id="back-to-menu-analisis">
+            <span>←</span> Volver
+        </button>
+        
+        <div class="analisis-container">
+            <div class="group-visualization">
+                <button class="resource-card" data-url="https://www.researchrabbit.ai" title="Descubre artículos relacionados y construye redes de literatura de forma visual e interactiva">
+                    <img src="images/_researchrabbit.png" alt="Research Rabbit">
+                    <div class="name">Research Rabbit</div>
+                </button>
+                
+                <button class="resource-card" data-url="https://www.connectedpapers.com" title="Visualiza conexiones entre papers científicos mediante gráficos interactivos de citas">
+                    <img src="images/_connectpapers.png" alt="Connected Papers">
+                    <div class="name">Connected Papers</div>
+                </button>
+                
+                <button class="resource-card" data-url="https://www.paperdigest.org" title="Acceso alternativo a resúmenes de papers con diferentes formatos de visualización">
+                    <img src="images/_paperdigest.jfif" alt="Paper Digest">
+                    <div class="name">Paper Digest</div>
+                </button>
+            </div>
+            
+            <div class="group-other">
+                <button class="resource-card" data-url="https://www.resoomer.com" title="Resume automáticamente textos largos identificando las ideas principales">
+                    <img src="images/_resoomer.jfif" alt="Resoomer">
+                    <div class="name">Resoomer</div>
+                </button>
+                
+                <button class="resource-card" data-url="https://www.penelope.ai" title="Asistente de escritura académica con IA para mejorar tus papers y tesis">
+                    <img src="images/_penelopeai.png" alt="Penelope AI">
+                    <div class="name">Penelope.ai</div>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Vista de Otros Recursos -->
+    <div id="otros-view">
+        <button class="back-button" id="back-to-menu-otros">
+            <span>←</span> Volver
+        </button>
+        
+        <div class="otros-container">
+            <!-- Grupo de Traductores con background -->
+            <div class="group-traductores">
+                <h3 class="group-title">Traductores</h3>
+                <div class="resources-grid traductores-grid">
+                    <button class="resource-card" data-url="https://www.reverso.net" title="Traductor con contexto y ejemplos de uso en diferentes idiomas">
+                        <img src="images/_reverso.png" alt="Reverso">
+                        <div class="name">Reverso</div>
+                    </button>
+                    
+                    <button class="resource-card" data-url="https://translate.google.com" title="Traductor de Google para múltiples idiomas y documentos">
+                        <img src="images/_googletraductor.png" alt="Google Traductor">
+                        <div class="name">Google Traductor</div>
+                    </button>
+                    
+                    <button class="resource-card" data-url="https://www.deepl.com" title="Traductor con IA de alta calidad para textos académicos y profesionales">
+                        <img src="images/_deepl.png" alt="DeepL">
+                        <div class="name">DeepL</div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Grupo de IA para Investigación -->
+            <div class="group-ia-investigacion">
+                <!-- <h3 class="group-title">IA para Investigación</h3> -->
+                <div class="resources-grid ia-grid">
+                    <button class="resource-card" data-url="https://aistudio.google.com" title="Google AI Studio para experimentar con modelos de IA">
+                        <img src="images/_google_studio.png" alt="Google Studio">
+                        <div class="name">Google Studio</div>
+                    </button>
+                    
+                    <button class="resource-card" data-url="https://www.perplexity.ai" title="Motor de búsqueda con IA que proporciona respuestas con fuentes">
+                        <img src="images/_perplexity.png" alt="Perplexity">
+                        <div class="name">Perplexity</div>
+                    </button>
+                    
+                    <button class="resource-card" data-url="https://notebooklm.google.com" title="Asistente de investigación con IA de Google para tus documentos">
+                        <img src="images/_notebook.png" alt="NotebookLM">
+                        <div class="name">NotebookLM</div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Recursos individuales después de traductores -->
+            <div class="recursos-individuales">
+                <button class="resource-card" data-url="https://orcid.org" title="Identificador único para investigadores que conecta tu perfil con tu investigación">
+                    <img src="images/_orcid.png" alt="ORCID">
+                    <div class="name">ORCID</div>
+                </button>
+                
+                <button class="resource-card" data-url="https://www.overleaf.com" title="Editor LaTeX colaborativo en línea para documentos científicos">
+                    <img src="images/_overleaf.png" alt="Overleaf">
+                    <div class="name">Overleaf</div>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Vista de USAL -->
+    <div id="usal-view">
+        <button class="back-button" id="back-to-menu-usal">
+            <span>←</span> Volver
+        </button>
+        
+        <div class="resources-grid">
+            <button class="resource-card" data-url="https://bibliotecas.usal.es" title="Sistema de bibliotecas de la Universidad de Salamanca">
+                <img src="images/_usal_bibliotecas.png" alt="Bibliotecas USAL">
+                <div class="name">Bibliotecas</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://studium.usal.es" title="Plataforma de aprendizaje virtual Moodle de la USAL">
+                <img src="images/_usal_studium.jfif" alt="Studium">
+                <div class="name">Studium</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://produccioncientifica.usal.es/grupos/3833/detalle" title="Expert Systems and Applications Laboratory">
+                <img src="images/_usal_esalab.png" alt="ESALAB">
+                <div class="name">ESALAB</div>
+            </button>
+            
+            <button class="resource-card" data-url="https://portalservicios.usal.es/RAPI" title="Repositorio Abierto de Publicaciones e Investigación de la USAL">
+                <img src="images/_usal_rapi.png" alt="RAPI">
+                <div class="name">RAPI</div>
+            </button>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
