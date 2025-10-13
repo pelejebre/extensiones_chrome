@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 380px;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #11998e;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .status-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2dfdb 100%);
+            border-radius: 12px;
+        }
+
+        .status-icon {
+            font-size: 64px;
+            margin-bottom: 10px;
+        }
+
+        .status-text {
+            font-size: 16px;
+            color: #00796b;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .status-detail {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .config-section {
+            margin-bottom: 20px;
+        }
+
+        .config-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
+        }
+
+        .btn-stop {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-stop:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group input[type="number"] {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            color: #11998e;
+        }
+
+        .input-group input[type="number"]:focus {
+            outline: none;
+            border-color: #11998e;
+        }
+
+        .input-unit {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .tips-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tips-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tips-list {
+            font-size: 12px;
+            color: #856404;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+
+        .tips-list li {
+            margin-bottom: 5px;
+        }
+
+        .stats {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .stats-title {
+            font-size: 12px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .stats-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        /* Estilos para modo respiración */
+        #breathingView {
+            display: none;
+            text-align: center;
+        }
+
+        .breathing-container {
+            padding: 30px 20px;
+        }
+
+        .breathing-title {
+            font-size: 24px;
+            color: #11998e;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .breathing-circle-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+        }
+
+        .breathing-circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(17, 153, 142, 0.3);
+            transition: transform 1s ease-in-out;
+        }
+
+        .breathing-circle.inhale {
+            transform: scale(1.3);
+        }
+
+        .breathing-circle.hold {
+            transform: scale(1.3);
+        }
+
+        .breathing-circle.exhale {
+            transform: scale(1);
+        }
+
+        .breathing-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .breathing-counter {
+            font-size: 48px;
+            font-weight: bold;
+            color: #11998e;
+            margin-bottom: 20px;
+        }
+
+        .breathing-instruction {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            min-height: 30px;
+        }
+
+        .breathing-progress {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .breathing-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-breathing {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-mute {
+            background: #f1f1f1;
+            color: #666;
+        }
+
+        .btn-mute:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-mute.muted {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-exit-breathing {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-exit-breathing:hover {
+            background: #d32f2f;
+        }
+
+        .breathing-complete {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .breathing-complete.show {
+            display: block;
+        }
+
+        .complete-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .complete-title {
+            font-size: 24px;
+            color: #11998e;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .complete-message {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div class="header">
+            <h1>
+                <span>💪</span>
+                FocusBreak
+            </h1>
+            <p>Cuida tu salud con pausas activas regulares</p>
+        </div>
+
+        <!-- Estado actual -->
+        <div class="status-section">
+            <div class="status-icon" id="statusIcon">⏸️</div>
+            <div class="status-text" id="statusText">Recordatorios desactivados</div>
+            <div class="status-detail" id="statusDetail">Configura tu intervalo y activa</div>
+        </div>
+
+        <!-- Configuración -->
+        <div class="config-section">
+            <div class="config-title">
+                <span>⚙️</span>
+                Configuración
+            </div>
+            
+            <div class="input-group">
+                <label for="workInterval">Intervalo de trabajo</label>
+                <div class="input-row">
+                    <input type="number" id="workInterval" min="5" max="120" value="50">
+                    <span class="input-unit">minutos</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="breakDuration">Duración de pausa sugerida</label>
+                <div class="input-row">
+                    <input type="number" id="breakDuration" min="5" max="30" value="10">
+                    <span class="input-unit">minutos</span>
+                </div>
+            </div>
+
+            <button class="btn btn-start" id="startBtn">
+                <span>▶️</span> Activar recordatorios
+            </button>
+            <button class="btn btn-stop" id="stopBtn" style="display: none;">
+                <span>⏹️</span> Desactivar recordatorios
+            </button>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Consejos -->
+        <div class="tips-section">
+            <div class="tips-title">
+                <span>💡</span>
+                Tips para pausas activas
+            </div>
+            <ul class="tips-list">
+                <li>Levántate y camina durante 2-3 minutos</li>
+                <li>Estira cuello, hombros y espalda</li>
+                <li>Mira algo lejano para descansar la vista</li>
+                <li>Respira profundamente 5 veces</li>
+                <li>Hidrátate con un vaso de agua</li>
+            </ul>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats">
+            <div class="stats-title">Pausas realizadas hoy</div>
+            <div class="stats-value" id="breaksToday">0</div>
+        </div>
+    </div>
+
+    <!-- Vista de respiración guiada -->
+    <div class="container" id="breathingView">
+        <div class="breathing-container" id="breathingActive">
+            <div class="breathing-title">🧘 Respiración guiada</div>
+            
+            <div class="breathing-counter" id="breathingCounter">4</div>
+            <div class="breathing-instruction" id="breathingInstruction">Prepárate...</div>
+            
+            <div class="breathing-circle-container">
+                <div class="breathing-circle" id="breathingCircle">
+                    <div class="breathing-text" id="breathingText">LISTO</div>
+                </div>
+            </div>
+            
+            <div class="breathing-progress" id="breathingProgress">Ciclo 1 de 5</div>
+            
+            <div class="breathing-controls">
+                <button class="btn-breathing btn-mute" id="btnMute">🔊 Sonido</button>
+                <button class="btn-breathing btn-exit-breathing" id="btnExitBreathing">❌ Salir</button>
+            </div>
+        </div>
+
+        <!-- Pantalla de completado -->
+        <div class="breathing-complete" id="breathingComplete">
+            <div class="complete-icon">✅</div>
+            <div class="complete-title">¡Excelente trabajo!</div>
+            <div class="complete-message">
+                Completaste 5 ciclos de respiración controlada.<br>
+                Tu mente y cuerpo están más relajados.
+            </div>
+            <button class="btn btn-start" id="btnContinueBreak">
+                ☕ Continuar descanso
+            </button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
