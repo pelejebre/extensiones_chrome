@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚫 Sitio Bloqueado - FocusZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon {
+            font-size: 120px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .blocked-site {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .message {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .message h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .message p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .motivational-quote {
+            font-style: italic;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .footer {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🚫</div>
+        
+        <h1>En Modo Enfoque</h1>
+        <p class="subtitle">Este sitio está bloqueado temporalmente</p>
+                
+        <div class="message">
+            <h2>🎯 Mantén tu concentración</h2>
+            <p>
+                Estás en una sesión Pomodoro activa. Este sitio estará disponible 
+                cuando termine tu tiempo de enfoque o durante el descanso.
+            </p>
+        </div>
+        
+        <div class="motivational-quote">
+            💪 "La concentración es la llave del éxito. No puedes hacer todo a la vez, 
+            pero puedes hacer cualquier cosa si te enfocas en una sola tarea."
+        </div>        
+               
+        <div class="footer">
+            💪 Continúa con tu trabajo. ¡Tú puedes hacerlo!
+        </div>
+    </div>
+    
+    <script>
+        // Obtener el sitio bloqueado de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const site = urlParams.get('site');
+        
+        if (site) {
+            document.getElementById('blockedSite').textContent = site;
+        }
+        
+        // Incrementar contador de bloqueos
+        const today = new Date().toDateString();
+        chrome.storage.local.get(['blocks'], (result) => {
+            const blocks = result.blocks || {};
+            blocks[today] = (blocks[today] || 0) + 1;
+            chrome.storage.local.set({ blocks: blocks });
+        });
+        
+        // Escuchar actualizaciones del timer
+        chrome.runtime.onMessage.addListener((message) => {
+            if (message.action === 'timerUpdate') {
+                // Si el modo enfoque terminó, recargar la página original
+                if (!message.isFocusMode || !message.isRunning) {
+                    setTimeout(() => {
+                        history.back();
+                    }, 1000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
