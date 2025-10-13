@@ -9,7 +9,7 @@ En este repositorio encontrarás una colección de extensiones para el navegador
 
 Este repositorio se basa en cuatro archivos principales que definen la estructura y el comportamiento de cada extensión:
 
-*   **`icon48.png`**: El icono que representa la extensión en la barra de herramientas del navegador y en la página de gestión de extensiones.
+*   **`icon.png`**: El icono que representa la extensión en la barra de herramientas del navegador y en la página de gestión de extensiones.
 
 *   **`manifest.json`**: El archivo de configuración central de la extensión. Define el nombre, la descripción, los permisos requeridos, el script principal (`popup.html`) y otros metadatos importantes.
 
@@ -24,6 +24,14 @@ Además de estos archivos principales, el repositorio también incluye:
 *   ⚙️ Herramientas y utilidades que mejoran la experiencia de uso del navegador.
 *   📖 Documentación breve y guías rápidas para instalar y personalizar cada extensión.
 
+## 📂 Proyectos Disponibles
+
+Aquí tienes una lista de las extensiones actualmente disponibles en este repositorio:
+
+*   📁 [**Extensión FocusZone**](./Extensión%20FocusZone/) (Bloqueador Pomodoro para mantener la concentración y eliminar distracciones durante sesiones de trabajo)
+*   📁 [**Extensión aplicaciones IA**](./Extensión%20aplicaciones%20IA/) (Acceso rápido y organizado a herramientas de Inteligencia Artificial desde tu navegador)
+*   📁 [**Extensión doctorado**](./Extensión%20doctorado/) (Stack académico con recursos esenciales para investigación, bases de datos y gestión documental)
+
 ## 🎯 Objetivos
 
 🚀 Aprender y profundizar en la creación de extensiones para navegadores modernos.
@@ -34,9 +42,4 @@ Además de estos archivos principales, el repositorio también incluye:
 ## 🤝 Contribuciones
 
 ¡Todas las contribuciones son bienvenidas! ✨
-Si deseas mejorar una extensión, proponer nuevas funcionalidades o compartir tus propias creaciones, no dudes en abrir un issue o hacer un pull request.
-
-🤝 **Contribuciones**
-
-¡Todas las contribuciones son bienvenidas! ✨  
 Si deseas mejorar una extensión, proponer nuevas funcionalidades o compartir tus propias creaciones, no dudes en abrir un issue o hacer un pull request.

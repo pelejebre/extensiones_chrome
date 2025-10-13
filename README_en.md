@@ -24,6 +24,14 @@ In addition to these main files, the repository also includes:
 *   ⚙️ Tools and utilities that improve the browser user experience.
 *   📖 Brief documentation and quick guides to install and customize each extension.
 
+## 📂 Available Projects
+
+Here is a list of the extensions currently available in this repository:
+
+*   📁 [**FocusZone Extension**](./Extensión%20FocusZone/) (Pomodoro blocker to maintain concentration and eliminate distractions during work sessions)
+*   📁 [**AI Applications Extension**](./Extensión%20aplicaciones%20IA/) (Quick and organized access to Artificial Intelligence tools from your browser)
+*   📁 [**PhD Extension**](./Extensión%20doctorado/) (Academic stack with 33 essential resources for research, databases and document management)
+
 ## 🎯 Objectives
 
 🚀 Learn and deepen the creation of extensions for modern browsers.
@@ -34,9 +42,4 @@ In addition to these main files, the repository also includes:
 ## 🤝 Contributions
 
 All contributions are welcome! ✨
-If you want to improve an extension, propose new features or share your own creations, don't hesitate to open an issue or make a pull request.
-
-🤝 **Contributions**
-
-All contributions are welcome! ✨  
 If you want to improve an extension, propose new features or share your own creations, don't hesitate to open an issue or make a pull request.
