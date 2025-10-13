@@ -1,4 +1,4 @@
-🧩 Exploring Chrome Extensions 🧩
+🧩 Exploring Chrome Extensions
 =====================================
 
 ## 📌 Description
@@ -24,13 +24,14 @@ In addition to these main files, the repository also includes:
 *   ⚙️ Tools and utilities that improve the browser user experience.
 *   📖 Brief documentation and quick guides to install and customize each extension.
 
-## 📂 Available Projects
+## 📂 Available projects
 
 Here is a list of the extensions currently available in this repository:
 
 *   📁 [**FocusZone Extension**](./Extensión%20FocusZone/) (Pomodoro blocker to maintain concentration and eliminate distractions during work sessions)
+*   📁 [**FocusBreak Extension**](./Extensión%20FocusBreak/) (Periodic reminders for active breaks with 4-7-8 guided breathing technique)
 *   📁 [**AI Applications Extension**](./Extensión%20aplicaciones%20IA/) (Quick and organized access to Artificial Intelligence tools from your browser)
-*   📁 [**PhD Extension**](./Extensión%20doctorado/) (Academic stack with 33 essential resources for research, databases and document management)
+*   📁 [**PhD Extension**](./Extensión%20doctorado/) (Academic stack with essential resources for research, databases and document management)
 
 ## 🎯 Objectives
 
