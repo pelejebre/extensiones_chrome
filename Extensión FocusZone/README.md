@@ -1,5 +1,14 @@
 # 🍅 FocusZone - Bloqueador pomodoro
 
+<p align="center">
+  <table>
+    <tr>
+      <td><img src="Images/Menu_01.png" alt="Menu_01" width="300" /></td>
+      <td><img src="Images/Menu_02.png" alt="Menu_02" width="300" /></td>
+    </tr>
+  </table>
+</p>
+
 **FocusZone** es una extensión de Chrome que te ayuda a mantener tu concentración bloqueando sitios web distractores durante sesiones tipo Pomodoro (p.ej. 25 minutos de foco, 5 de descanso).
 
 ## 🎯 ¿Qué es FocusZone?

@@ -1,5 +1,14 @@
 # 🍅 FocusZone - Pomodoro blocker
 
+<p align="center">
+  <table>
+    <tr>
+      <td><img src="Images/Menu_01.png" alt="Menu_01" width="300" /></td>
+      <td><img src="Images/Menu_02.png" alt="Menu_02" width="300" /></td>
+    </tr>
+  </table>
+</p>
+
 **FocusZone** is a Chrome extension that helps you maintain your focus by blocking distracting websites during Pomodoro-style sessions (e.g., 25 minutes of focus, 5 minutes of rest).
 
 ## 🎯 What is FocusZone?
