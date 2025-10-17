@@ -1,5 +1,7 @@
 # 🎓 Stack de Recursos para Doctorado
 
+<p align="center"><img src="Images/Menu_01.png" alt="Menu_01" width="600"/></p>
+
 ## 📌 Descripción
 
 En esta extensión de Chrome se centraliza y organiza parte de los recursos habituales que utilizo en mis estudios. Un hub completo de herramientas académicas, bases de datos, gestores documentales y recursos institucionales, todo organizado y accesible en un solo lugar.

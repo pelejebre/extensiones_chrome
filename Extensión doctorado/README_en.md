@@ -1,5 +1,7 @@
 # 🎓 PhD Resource Stack
 
+<p align="center"><img src="Images/Menu_01.png" alt="Menu_01" width="600"/></p>
+
 ## 📌 Description
 
 This Chrome extension centralizes and organizes some of the usual resources I use in my studies. A complete hub of academic tools, databases, reference managers and institutional resources, all organized and accessible in one place.
