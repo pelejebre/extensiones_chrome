@@ -1,0 +1,577 @@
+/* ============ VARIABLES ============ */
+:root {
+  --primary-color: #4CAF50;
+  --secondary-color: #2196F3;
+  --danger-color: #f44336;
+  --warning-color: #ff9800;
+  --text-primary: #333;
+  --text-secondary: #666;
+  --bg-light: #f5f5f5;
+  --border-color: #ddd;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ============ RESET & BASE ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 380px;
+  min-height: 500px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--text-primary);
+  background: #fff;
+}
+
+/* ============ HEADER ============ */
+.header {
+  background: linear-gradient(135deg, var(--primary-color), #66BB6A);
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ============ TABS ============ */
+.tabs {
+  display: flex;
+  background: white;
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+  background: var(--bg-light);
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+  background: rgba(76, 175, 80, 0.05);
+}
+
+/* ============ TAB CONTENT ============ */
+.tab-content {
+  display: none;
+  padding: 20px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ============ TIMER TAB ============ */
+.timer-display {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#timeDisplay {
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-family: 'Courier New', monospace;
+  margin: 10px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-label {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.status-label.active {
+  background: rgba(76, 175, 80, 0.15);
+  color: var(--primary-color);
+}
+
+.status-label.paused {
+  background: rgba(255, 152, 0, 0.15);
+  color: var(--warning-color);
+}
+
+.status-label.break {
+  background: rgba(33, 150, 243, 0.15);
+  color: var(--secondary-color);
+}
+
+#currentDomain {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--bg-light);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* ============ CONTROLS ============ */
+.timer-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #45a049;
+}
+
+.btn-secondary {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #1976D2;
+}
+
+.btn-danger {
+  background: var(--danger-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #da190b;
+}
+
+.btn-warning {
+  background: var(--warning-color);
+  color: white;
+}
+
+.btn-warning:hover {
+  background: #e68900;
+}
+
+/* ============ POMODORO INFO ============ */
+.pomodoro-info {
+  text-align: center;
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--bg-light);
+  border-radius: 8px;
+}
+
+.pomodoro-info p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+#pomodoroCount {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* ============ STATS TAB ============ */
+.stats-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stats-filters button {
+  flex: 1;
+  padding: 10px;
+  background: white;
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+}
+
+.stats-filters button.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.empty-state small {
+  font-size: 13px;
+  color: #999;
+}
+
+.stats-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background: var(--bg-light);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.stat-item:hover {
+  background: #eeeeee;
+  transform: translateX(4px);
+}
+
+.stat-domain {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.stat-time {
+  font-size: 15px;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.stats-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.stats-actions button {
+  flex: 1;
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* ============ CONFIG TAB ============ */
+.config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.config-info {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(33, 150, 243, 0.1);
+  border-left: 4px solid var(--secondary-color);
+  border-radius: 4px;
+}
+
+.config-info h3 {
+  font-size: 14px;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+.config-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.config-info li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.config-info li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.config-status {
+  text-align: center;
+  margin-top: 12px;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.config-status.success {
+  background: rgba(76, 175, 80, 0.15);
+  color: var(--primary-color);
+}
+
+/* ============ STATUS MESSAGE ============ */
+.status-msg {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--shadow-hover);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.status-msg.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.status-msg.success {
+  background: var(--primary-color);
+  color: white;
+}
+
+.status-msg.error {
+  background: var(--danger-color);
+  color: white;
+}
+
+.status-msg.info {
+  background: var(--secondary-color);
+  color: white;
+}
+
+/* ============ SCROLLBAR ============ */
+.stats-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.stats-list::-webkit-scrollbar-track {
+  background: var(--bg-light);
+  border-radius: 4px;
+}
+
+.stats-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.stats-list::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* ============ BLOCKED SITES ============ */
+.blocked-sites-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 2px solid var(--border-color);
+}
+
+.blocked-sites-section h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.blocked-sites-info {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.site-input-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.site-input-container input {
+  flex: 1;
+}
+
+.btn-add {
+  background: var(--primary-color);
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-add:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+}
+
+.sites-list {
+  max-height: 180px;
+  overflow-y: auto;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--bg-light);
+}
+
+.site-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  border-left: 3px solid var(--primary-color);
+  transition: all 0.2s ease;
+}
+
+.site-item:last-child {
+  margin-bottom: 0;
+}
+
+.site-item:hover {
+  transform: translateX(2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.site-name {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+  flex: 1;
+}
+
+.btn-remove {
+  background: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-remove:hover {
+  background: #da190b;
+  transform: scale(1.05);
+}
+
+.empty-state-small {
+  text-align: center;
+  padding: 16px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-content.active {
+  animation: fadeIn 0.3s ease;
+}

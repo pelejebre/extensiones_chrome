@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusZone v2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>⏱️ FocusZone v2</h1>
+      <div class="subtitle">Focus & track your time</div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="timer">
+        🎯 Timer
+      </button>
+      <button class="tab-btn" data-tab="stats">
+        📊 Stats
+      </button>
+      <button class="tab-btn" data-tab="config">
+        ⚙️ Config
+      </button>
+      <button class="tab-btn" data-tab="info">
+        ℹ️ Info
+      </button>
+    </div>
+
+    <!-- TAB: TIMER -->
+    <div id="timerTab" class="tab-content active">
+      <div class="timer-display">
+        <div id="timeDisplay" class="time-display">25:00</div>
+        <div id="statusLabel" class="status-label">Listo para empezar</div>
+        <div id="currentDomain" class="current-domain"></div>
+      </div>
+
+      <div class="timer-controls">
+        <button id="startBtn" class="btn btn-primary">
+          ▶️ Iniciar
+        </button>
+        <button id="pauseBtn" class="btn btn-secondary" style="display: none;">
+          ⏸️ Pausar
+        </button>
+        <button id="resumeBtn" class="btn btn-secondary" style="display: none;">
+          ▶️ Reanudar
+        </button>
+        <button id="stopBtn" class="btn btn-danger" style="display: none;">
+          ⏹️ Detener
+        </button>
+      </div>
+
+      <div class="pomodoro-counter">
+        <span>Pomodoros completados hoy:</span>
+        <span id="pomodoroCount" class="count-badge">0</span>
+      </div>
+    </div>
+
+    <!-- TAB: STATS -->
+    <div id="statsTab" class="tab-content">
+      <div class="stats-header">
+        <h3>📊 Estadísticas de Tiempo</h3>
+        <div class="stats-controls">
+          <button id="todayBtn" class="filter-btn active">Hoy</button>
+          <button id="weekBtn" class="filter-btn">Esta semana</button>
+        </div>
+      </div>
+
+      <div id="statsContent" class="stats-content">
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <p>No hay datos todavía</p>
+          <small>Completa un Pomodoro para ver estadísticas</small>
+        </div>
+      </div>
+
+      <div class="export-section">
+        <h4>💾 Exportar Datos</h4>
+        <div class="export-buttons">
+          <button id="exportCsvBtn" class="btn btn-export">
+            📄 Exportar CSV
+          </button>
+          <button id="exportJsonBtn" class="btn btn-export">
+            📦 Exportar JSON
+          </button>
+        </div>
+      </div>
+
+      <div class="data-management">
+        <button id="clearHistoryBtn" class="btn btn-danger-outline">
+          🗑️ Limpiar historial
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB: CONFIG -->
+    <div id="configTab" class="tab-content">
+      <div class="config-section">
+        <h3>⚙️ Configuración</h3>
+
+        <div class="config-item">
+          <label for="workDuration">
+            🎯 Duración de trabajo (minutos)
+          </label>
+          <input 
+            type="number" 
+            id="workDuration" 
+            min="1" 
+            max="120" 
+            value="25"
+            class="config-input"
+          />
+        </div>
+
+        <div class="config-item">
+          <label for="breakDuration">
+            ☕ Duración de descanso (minutos)
+          </label>
+          <input 
+            type="number" 
+            id="breakDuration" 
+            min="1" 
+            max="60" 
+            value="5"
+            class="config-input"
+          />
+        </div>
+
+        <div class="config-item">
+          <label for="longBreakDuration">
+            🏖️ Descanso largo (minutos)
+          </label>
+          <input 
+            type="number" 
+            id="longBreakDuration" 
+            min="1" 
+            max="60" 
+            value="15"
+            class="config-input"
+          />
+        </div>
+
+        <div class="config-item">
+          <label for="pomodorosUntilLongBreak">
+            🔢 Pomodoros hasta descanso largo
+          </label>
+          <input 
+            type="number" 
+            id="pomodorosUntilLongBreak" 
+            min="2" 
+            max="10" 
+            value="4"
+            class="config-input"
+          />
+        </div>
+
+        <button id="saveConfigBtn" class="btn btn-primary">
+          💾 Guardar configuración
+        </button>
+        
+      </div>
+
+      <div class="blocked-sites-section">
+        <h4>🚫 Sitios bloqueados</h4>
+        <p class="blocked-sites-info">
+          El bloqueo de sitios se activa automáticamente durante las sesiones de trabajo
+        </p>
+        <div class="site-input-container">
+          <input 
+            type="text" 
+            id="newSiteInput" 
+            placeholder="ejemplo.com"
+            class="config-input"
+          />
+          <button class="btn btn-add" id="addSiteBtn">+ Agregar</button>
+        </div>
+        <div class="sites-list" id="sitesList">
+          <div class="empty-state-small">
+            Cargando sitios bloqueados...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: INFO -->
+    <div id="infoTab" class="tab-content">
+      <div class="info-section">
+        <h3>ℹ️ Información</h3>
+        <ul class="info-list">
+          <li>✅ Tracking solo en pestaña activa</li>
+          <li>📍 Se registra solo el dominio</li>
+          <li>💾 Datos guardados localmente</li>
+          <li>♾️ Historial ilimitado</li>
+          <li>🚫 Bloqueo activo durante trabajo</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Status Message -->
+    <div id="statusMsg" class="status-msg"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
