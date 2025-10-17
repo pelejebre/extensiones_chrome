@@ -1,5 +1,7 @@
 # 🤖 Extensión Aplicaciones IA
 
+<p align="center"><img src="Images/Menu_01.png" alt="Menu_01" width="600"/></p>
+
 ## 📌 Descripción
 
 Extensión de Chrome que proporciona acceso rápido y directo a las principales aplicaciones de inteligencia artificial desde tu navegador. Con un solo clic, accede a ChatGPT, Gemini, Google AI Studio, NotebookLM y Perplexity.

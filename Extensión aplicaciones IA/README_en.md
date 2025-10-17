@@ -1,5 +1,7 @@
 # 🤖 AI Applications Extension
 
+<p align="center"><img src="Images/Menu_01.png" alt="Menu_01" width="600"/></p>
+
 ## 📌 Description
 
 Chrome extension that provides quick and direct access to the main artificial intelligence applications from your browser. With a single click, access ChatGPT, Gemini, Google AI Studio, NotebookLM and Perplexity.
