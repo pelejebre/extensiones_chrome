@@ -1,6 +1,6 @@
 # 🤖 AI Applications Extension
 
-<p align="center"><img src="Images/Menu_01.png" alt="Menu_01" width="600"/></p>
+<p align="center"><img src="images/Menu_01.png" alt="Menu_01" width="600"/></p>
 
 ## 📌 Description
 

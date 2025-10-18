@@ -3,10 +3,10 @@
 <p align="center">
   <table>
     <tr>
-      <td><img src="Images/Menu_01.png" alt="Menu_01" width="300" /></td>
-      <td><img src="Images/Menu_02.png" alt="Menu_02" width="300" /></td>
-      <td><img src="Images/Menu_03.png" alt="Menu_03" width="300" /></td>
-      <td><img src="Images/Menu_04.png" alt="Menu_04" width="300" /></td>
+      <td><img src="images/Menu_01.png" alt="Menu_01" width="300" /></td>
+      <td><img src="images/Menu_02.png" alt="Menu_02" width="300" /></td>
+      <td><img src="images/Menu_03.png" alt="Menu_03" width="300" /></td>
+      <td><img src="images/Menu_04.png" alt="Menu_04" width="300" /></td>
     </tr>
   </table>
 </p>
