@@ -29,6 +29,7 @@ Además de estos archivos principales, el repositorio también incluye:
 Aquí tienes una lista de las extensiones actualmente disponibles en este repositorio:
 
 *   📁 [**Extensión FocusZone**](./Extensión%20FocusZone/) (Bloqueador Pomodoro para mantener la concentración y eliminar distracciones durante sesiones de trabajo)
+*   📁 [**Extensión FocusZone v2**](./Extensión%20FocusZone_v2/) (Versión mejorada: Pomodoro + Tracking automático de tiempo + Bloqueo inteligente con estadísticas y exportación de datos)
 *   📁 [**Extensión FocusBreak**](./Extensión%20FocusBreak/) (Recordatorios periódicos para pausas activas con técnica de respiración guiada 4-7-8)
 *   📁 [**Extensión aplicaciones IA**](./Extensión%20aplicaciones%20IA/) (Acceso rápido y organizado a herramientas de Inteligencia Artificial desde tu navegador)
 *   📁 [**Extensión doctorado**](./Extensión%20doctorado/) (Stack académico con recursos esenciales para investigación, bases de datos y gestión documental)
